@@ -14,6 +14,7 @@ public class ResetPasswordPage extends BasePage {
     private final String SUBMIT_BUTTON = "//button[@type='submit']";
     private final String EMAIL_ALERT_MESSAGE = "//p[contains(text(), 'Email is required')]";
     private final String RESET_PASSWORD_INFO_MESSAGE = "//p[contains(text(), 'Reset instructions have been sent')]";
+    private final String BACK_TO_LOGIN_BUTTON = "//button[contains(text(), 'Back to login')]";
 
     public ResetPasswordPage (WebDriver driver) {
         this.driver = driver;
@@ -40,5 +41,9 @@ public class ResetPasswordPage extends BasePage {
 
     public String getResetPasswordInfoMessageText() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RESET_PASSWORD_INFO_MESSAGE))).getText();
+    }
+
+    public void clickBackToLoginButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(BACK_TO_LOGIN_BUTTON))).click();
     }
 }

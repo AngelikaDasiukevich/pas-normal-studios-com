@@ -28,4 +28,12 @@ public class ResetPasswordTest extends BaseTest {
         resetPasswordPage.clickSubmitButton();
         Assertions.assertEquals("Reset instructions have been sent to your email", resetPasswordPage.getResetPasswordInfoMessageText());
     }
+
+    @Test
+    public void assertBackToLoginButton() {
+        resetPasswordPage.setRandomEmailInput();
+        resetPasswordPage.clickSubmitButton();
+        resetPasswordPage.clickBackToLoginButton();
+        Assertions.assertEquals("Create your International Cycling Club account", accountPage.getTitleText());
+    }
 }
