@@ -17,6 +17,8 @@ public class AccountPage extends BasePage {
     private final String EMAIL_ALERT_MESSAGE = "//p[contains(text(), 'Email is required')]";
     private final String PASSWORD_ALERT_MESSAGE = "//p[contains(text(), 'Password is required')]";
     private final String INVALID_EMAIL_PASSWORD_ALERT_MESSAGE = "//p[contains(text(), 'Invalid email or password')]";
+    private final String FORGET_PASSWORD_BUTTON = "//button[contains(text(), 'Forget password')]";
+    private final String CREATE_ACCOUNT_BUTTON = "//span[contains(text(), 'Create your account')]";
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
@@ -59,5 +61,13 @@ public class AccountPage extends BasePage {
 
     public String getInvalidEmailPasswordAlertMessage() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(INVALID_EMAIL_PASSWORD_ALERT_MESSAGE))).getText();
+    }
+
+    public void clickForgetPasswordButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(FORGET_PASSWORD_BUTTON))).click();
+    }
+
+    public void clickCreateAccountButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(CREATE_ACCOUNT_BUTTON))).click();
     }
 }
