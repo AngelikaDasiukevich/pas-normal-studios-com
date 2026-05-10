@@ -25,21 +25,21 @@ public class AccountTest extends BaseTest {
     }
 
     @Test
-    public void assertEmailAlertMessage() {
+    public void assertBlankEmailAlertMessage() {
         accountPage.setRandomPasswordInput();
         accountPage.clickSubmitLoginButton();
         Assertions.assertEquals("Email is required", accountPage.getEmailAlertMessageText());
     }
 
     @Test
-    public void assertPasswordAlertMessage() {
+    public void assertBlankPasswordAlertMessage() {
         accountPage.setRandomEmailInput();
         accountPage.clickSubmitLoginButton();
         Assertions.assertEquals("Password is required", accountPage.getPasswordAlertMessageText());
     }
 
     @Test
-    public void assertCreateAccountButtonVisible() {
+    public void assertSignUpButtonVisible() {
         accountPage.clickCreateAccountButton();
         Assertions.assertTrue(accountPage.isSubmitSignUpButtonVisible());
     }
