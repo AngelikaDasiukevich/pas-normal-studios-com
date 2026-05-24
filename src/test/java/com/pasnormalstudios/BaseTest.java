@@ -13,7 +13,7 @@ public class BaseTest {
     public void beforeEach() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        homePage = new HomePage(driver);
+        homePage = new HomePage();
         homePage.open();
         homePage.clickAllowCookiesButton();
     }

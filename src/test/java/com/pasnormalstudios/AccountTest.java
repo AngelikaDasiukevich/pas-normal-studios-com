@@ -9,7 +9,7 @@ public class AccountTest extends BaseTest {
 
     @BeforeEach
     public void setupAccount() {
-        accountPage = new AccountPage(driver);
+        accountPage = new AccountPage();
         homePage.clickAccountLink();
     }
 

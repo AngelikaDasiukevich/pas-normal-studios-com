@@ -10,10 +10,10 @@ public class ResetPasswordTest extends BaseTest {
 
     @BeforeEach
     public void setupAccount() {
-        accountPage = new AccountPage(driver);
+        accountPage = new AccountPage();
         homePage.clickAccountLink();
         accountPage.clickForgetPasswordButton();
-        resetPasswordPage = new ResetPasswordPage(driver);
+        resetPasswordPage = new ResetPasswordPage();
     }
 
     @Test

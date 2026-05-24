@@ -1,12 +1,7 @@
 package com.pasnormalstudios;
 
-import net.datafaker.Faker;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class AccountPage extends BasePage {
     private final String TITLE = "//h2[contains(@class, 'text-black')]";
@@ -21,9 +16,8 @@ public class AccountPage extends BasePage {
     private final String CREATE_ACCOUNT_BUTTON = "//span[contains(text(), 'Create your account')]";
     private final String LOGIN_BUTTON = "//span[contains(text(), 'Already have an account? Login')]";
 
-    public AccountPage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+    public AccountPage() {
+        super();
     }
 
     public String getTitleText() {
@@ -31,13 +25,11 @@ public class AccountPage extends BasePage {
     }
 
     public void setRandomEmailInput() {
-        faker = new Faker();
         String email = faker.internet().emailAddress();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EMAIL_INPUT))).sendKeys(email);
     }
 
     public void setRandomPasswordInput() {
-        faker = new Faker();
         String password = faker.internet().password(8, 20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PASSWORD_INPUT))).sendKeys(password);
     }
