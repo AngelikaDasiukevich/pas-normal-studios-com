@@ -1,5 +1,6 @@
 package com.pasnormalstudios;
 
+import com.pasnormalstudios.data.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -19,13 +20,18 @@ public class ResetPasswordPage extends BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TITLE))).getText();
     }
 
-    public void setRandomEmailInput() {
-        String email = faker.internet().emailAddress();
+    public void setEmailInput(String email) {
+        //String email = faker.internet().emailAddress();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EMAIL_INPUT))).sendKeys(email);
     }
 
     public void clickSubmitButton() {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SUBMIT_BUTTON))).click();
+    }
+
+    public void setEmailAndClickSubmitButton(User user) {
+        this.setEmailInput(user.getEmail());
+        this.clickSubmitButton();
     }
 
     public String getEmailAlertMessageText() {

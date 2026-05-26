@@ -1,5 +1,6 @@
 package com.pasnormalstudios;
 
+import com.pasnormalstudios.data.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -24,13 +25,11 @@ public class AccountPage extends BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TITLE))).getText();
     }
 
-    public void setRandomEmailInput() {
-        String email = faker.internet().emailAddress();
+    public void setEmailInput(String email) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EMAIL_INPUT))).sendKeys(email);
     }
 
-    public void setRandomPasswordInput() {
-        String password = faker.internet().password(8, 20);
+    public void setPasswordInput(String password) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PASSWORD_INPUT))).sendKeys(password);
     }
 
@@ -50,9 +49,9 @@ public class AccountPage extends BasePage {
         return driver.findElement(By.xpath(SUBMIT_SIGN_UP_BUTTON)).isDisplayed();
     }
 
-    public void setRandomEmailPasswordAndClickLoginButton() {
-        this.setRandomEmailInput();
-        this.setRandomPasswordInput();
+    public void setEmailPasswordAndClickLoginButton(User user) {
+        this.setEmailInput(user.getEmail());
+        this.setPasswordInput(user.getPassword());
         this.clickSubmitLoginButton();
     }
 

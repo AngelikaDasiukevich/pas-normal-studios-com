@@ -1,5 +1,6 @@
 package com.pasnormalstudios;
 
+import net.datafaker.Faker;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -9,9 +10,10 @@ public class BaseTest {
     HomePage homePage;
     WebDriver driver;
 
+
     @BeforeEach
     public void beforeEach() {
-        driver = new ChromeDriver();
+        driver = Driver.getDriver();
         driver.manage().window().maximize();
         homePage = new HomePage();
         homePage.open();
@@ -21,7 +23,7 @@ public class BaseTest {
     @AfterEach
     public void afterEach() {
         if (driver != null) {
-            driver.quit();
+            Driver.quitDriver();
         }
     }
 }

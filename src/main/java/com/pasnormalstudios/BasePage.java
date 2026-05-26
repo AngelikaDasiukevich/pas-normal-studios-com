@@ -9,11 +9,9 @@ import java.time.Duration;
 public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected Faker faker;
 
     public BasePage() {
         this.driver = Driver.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        this.faker = new Faker();
     }
 }
