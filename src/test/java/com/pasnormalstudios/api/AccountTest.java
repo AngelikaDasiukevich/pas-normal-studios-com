@@ -1,93 +1,60 @@
 package com.pasnormalstudios.api;
 
-import net.datafaker.Faker;
+import com.pasnormalstudios.data.User;
+import com.pasnormalstudios.data.UserFactory;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-
 public class AccountTest {
-    private final String API_HOME = "https://pasnormalstudios.com/api/";
+    User user;
+    ApiService apiService;
+
+    @BeforeEach
+    public void setupApi() {
+        user = UserFactory.createValidUser();
+        apiService = new ApiService();
+    }
 
     @Test
     public void invalidLogin() {
-        Faker faker = new Faker();
-        String email = faker.internet().emailAddress();
-        String password = faker.internet().password(16, 20);
-        final String LOGIN_URL = API_HOME + "auth/login";
         final String body = "{" +
-                "\"email\":\"" + email + "\"," +
-                "\"current-password\":\"" + password + "\"}";
+                "\"email\":\"" + user.getEmail() + "\"," +
+                "\"current-password\":\"" + user.getPassword() + "\"}";
 
-        given()
-                .header("Content-Type", "application/json")
-                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36")
-                .body(body)
-        .when()
-                .post(LOGIN_URL)
-        .then()
-                .log().all()
-                .statusCode(403)
-                .body("message", equalTo("Invalid email or password"));
+        apiService.doPostRequest(body);
+        Assertions.assertEquals(403, apiService.getStatusCode());
+        Assertions.assertEquals("Invalid email or password", apiService.getMessageFromResponse());
     }
 
     @Test
     public void blankEmail() {
-        Faker faker = new Faker();
-        String password = faker.internet().password(16, 20);
-        final String LOGIN_URL = API_HOME + "auth/login";
         final String body = "{" +
                 "\"email\":\"\"," +
-                "\"current-password\":\"" + password + "\"}";
+                "\"current-password\":\"" + user.getPassword() + "\"}";
 
-        given()
-                .header("Content-Type", "application/json")
-                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36")
-                .body(body)
-        .when()
-                .post(LOGIN_URL)
-        .then()
-                .log().all()
-                .statusCode(403)
-                .body("message", equalTo(""));
+        apiService.doPostRequest(body);
+        Assertions.assertEquals(403, apiService.getStatusCode());
+        Assertions.assertEquals("", apiService.getMessageFromResponse());
     }
 
     @Test
     public void blankPassword() {
-        Faker faker = new Faker();
-        String email = faker.internet().emailAddress();
-        final String LOGIN_URL = API_HOME + "auth/login";
         final String body = "{" +
-                "\"email\":\"" + email + "\"," +
+                "\"email\":\"" + user.getEmail() + "\"," +
                 "\"current-password\":\"\"}";
 
-        given()
-                .header("Content-Type", "application/json")
-                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36")
-                .body(body)
-                .when()
-                .post(LOGIN_URL)
-                .then()
-                .log().all()
-                .statusCode(403)
-                .body("message", equalTo(""));
+        apiService.doPostRequest(body);
+        Assertions.assertEquals(403, apiService.getStatusCode());
+        Assertions.assertEquals("", apiService.getMessageFromResponse());
     }
 
     @Test
     public void blankBody() {
-        final String LOGIN_URL = API_HOME + "auth/login";
         final String body = "{}";
-        System.out.println(body);
 
-        given()
-                .header("Content-Type", "application/json")
-                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36")
-                .body(body)
-                .when()
-                .post(LOGIN_URL)
-                .then()
-                .log().all()
-                .statusCode(403)
-                .body("message", equalTo(""));
+        apiService.doPostRequest(body);
+        Assertions.assertEquals(403, apiService.getStatusCode());
+        Assertions.assertEquals("", apiService.getMessageFromResponse());
     }
 }
