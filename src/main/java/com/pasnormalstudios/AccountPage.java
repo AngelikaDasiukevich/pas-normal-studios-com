@@ -1,12 +1,8 @@
 package com.pasnormalstudios;
 
-import net.datafaker.Faker;
+import com.pasnormalstudios.data.User;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class AccountPage extends BasePage {
     private final String TITLE = "//h2[contains(@class, 'text-black')]";
@@ -21,24 +17,19 @@ public class AccountPage extends BasePage {
     private final String CREATE_ACCOUNT_BUTTON = "//span[contains(text(), 'Create your account')]";
     private final String LOGIN_BUTTON = "//span[contains(text(), 'Already have an account? Login')]";
 
-    public AccountPage(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+    public AccountPage() {
+        super();
     }
 
     public String getTitleText() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TITLE))).getText();
     }
 
-    public void setRandomEmailInput() {
-        faker = new Faker();
-        String email = faker.internet().emailAddress();
+    public void setEmailInput(String email) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EMAIL_INPUT))).sendKeys(email);
     }
 
-    public void setRandomPasswordInput() {
-        faker = new Faker();
-        String password = faker.internet().password(8, 20);
+    public void setPasswordInput(String password) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PASSWORD_INPUT))).sendKeys(password);
     }
 
@@ -58,9 +49,9 @@ public class AccountPage extends BasePage {
         return driver.findElement(By.xpath(SUBMIT_SIGN_UP_BUTTON)).isDisplayed();
     }
 
-    public void setRandomEmailPasswordAndClickLoginButton() {
-        this.setRandomEmailInput();
-        this.setRandomPasswordInput();
+    public void setEmailPasswordAndClickLoginButton(User user) {
+        this.setEmailInput(user.getEmail());
+        this.setPasswordInput(user.getPassword());
         this.clickSubmitLoginButton();
     }
 

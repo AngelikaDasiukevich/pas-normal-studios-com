@@ -1,5 +1,7 @@
 package com.pasnormalstudios;
 
+import com.pasnormalstudios.data.User;
+import com.pasnormalstudios.data.UserFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,13 +9,15 @@ import org.junit.jupiter.api.Test;
 public class ResetPasswordTest extends BaseTest {
     AccountPage accountPage;
     ResetPasswordPage resetPasswordPage;
+    User user;
 
     @BeforeEach
     public void setupAccount() {
-        accountPage = new AccountPage(driver);
+        accountPage = new AccountPage();
         homePage.clickAccountLink();
         accountPage.clickForgetPasswordButton();
-        resetPasswordPage = new ResetPasswordPage(driver);
+        resetPasswordPage = new ResetPasswordPage();
+        user = UserFactory.createValidUser();
     }
 
     @Test
@@ -24,15 +28,13 @@ public class ResetPasswordTest extends BaseTest {
 
     @Test
     public void assertResetPasswordInfoMessage() {
-        resetPasswordPage.setRandomEmailInput();
-        resetPasswordPage.clickSubmitButton();
+        resetPasswordPage.setEmailAndClickSubmitButton(user);
         Assertions.assertEquals("Reset instructions have been sent to your email", resetPasswordPage.getResetPasswordInfoMessageText());
     }
 
     @Test
     public void assertBackToLoginButton() {
-        resetPasswordPage.setRandomEmailInput();
-        resetPasswordPage.clickSubmitButton();
+        resetPasswordPage.setEmailAndClickSubmitButton(user);
         resetPasswordPage.clickBackToLoginButton();
         Assertions.assertEquals("Create your International Cycling Club account", accountPage.getTitleText());
     }

@@ -1,12 +1,8 @@
 package com.pasnormalstudios;
 
-import net.datafaker.Faker;
+import com.pasnormalstudios.data.User;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class ResetPasswordPage extends BasePage {
     private final String TITLE = "//p[@class='text-2xl']";
@@ -16,23 +12,26 @@ public class ResetPasswordPage extends BasePage {
     private final String RESET_PASSWORD_INFO_MESSAGE = "//p[contains(text(), 'Reset instructions have been sent')]";
     private final String BACK_TO_LOGIN_BUTTON = "//button[contains(text(), 'Back to login')]";
 
-    public ResetPasswordPage (WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+    public ResetPasswordPage () {
+        super();
     }
 
     public String getTitleText() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TITLE))).getText();
     }
 
-    public void setRandomEmailInput() {
-        faker = new Faker();
-        String email = faker.internet().emailAddress();
+    public void setEmailInput(String email) {
+        //String email = faker.internet().emailAddress();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EMAIL_INPUT))).sendKeys(email);
     }
 
     public void clickSubmitButton() {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SUBMIT_BUTTON))).click();
+    }
+
+    public void setEmailAndClickSubmitButton(User user) {
+        this.setEmailInput(user.getEmail());
+        this.clickSubmitButton();
     }
 
     public String getEmailAlertMessageText() {
