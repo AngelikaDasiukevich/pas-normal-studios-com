@@ -1,7 +1,7 @@
 package com.pasnormalstudios;
 
 import com.pasnormalstudios.data.User;
-import com.pasnormalstudios.data.UserFactory;
+import com.pasnormalstudios.data.Users;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
@@ -16,10 +16,10 @@ public class AccountTest extends BaseTest {
 
     @BeforeEach
     public void setupAccount() {
+        homePage.clickAccountLink();
         accountPage = new AccountPage();
         log.info("Navigating to the account page via the home page.");
-        homePage.clickAccountLink();
-        user = UserFactory.createValidUser();
+        user = Users.getRandomUser();
         log.info("Test user generated: Email [{}], Password [{}]", user.getEmail(), user.getPassword());
     }
 

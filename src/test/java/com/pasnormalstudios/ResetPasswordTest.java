@@ -1,7 +1,7 @@
 package com.pasnormalstudios;
 
 import com.pasnormalstudios.data.User;
-import com.pasnormalstudios.data.UserFactory;
+import com.pasnormalstudios.data.Users;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ public class ResetPasswordTest extends BaseTest {
         homePage.clickAccountLink();
         accountPage.clickForgetPasswordButton();
         resetPasswordPage = new ResetPasswordPage();
-        user = UserFactory.createValidUser();
+        user = Users.getRandomUser();
     }
 
     @Test
