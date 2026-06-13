@@ -1,7 +1,10 @@
-package com.pasnormalstudios;
+package com.pasnormalstudios.ui;
 
+import com.pasnormalstudios.BaseTest;
 import com.pasnormalstudios.data.User;
 import com.pasnormalstudios.data.Users;
+import com.pasnormalstudios.pages.AccountPage;
+import com.pasnormalstudios.pages.ResetPasswordPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

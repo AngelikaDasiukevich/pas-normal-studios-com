@@ -1,13 +1,12 @@
 package com.pasnormalstudios.data;
 
-import com.pasnormalstudios.AccountTest;
 import net.datafaker.Faker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Users {
     private static final Faker FAKER = new Faker();
-    private static final Logger log = LogManager.getLogger(AccountTest.class);
+    private static final Logger log = LogManager.getLogger();
 
     public static User getRandomUser() {
         String generatedEmail = FAKER.internet().emailAddress();

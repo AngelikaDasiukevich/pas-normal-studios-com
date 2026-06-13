@@ -1,13 +1,13 @@
 package com.pasnormalstudios;
 
-import net.datafaker.Faker;
+import com.pasnormalstudios.driver.Driver;
+import com.pasnormalstudios.pages.HomePage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
-    HomePage homePage;
+    protected HomePage homePage;
     WebDriver driver;
 
 

@@ -1,4 +1,4 @@
-package com.pasnormalstudios;
+package com.pasnormalstudios.pages;
 
 import com.pasnormalstudios.data.User;
 import org.openqa.selenium.By;
