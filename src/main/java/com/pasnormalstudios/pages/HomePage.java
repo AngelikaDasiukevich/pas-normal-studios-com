@@ -10,6 +10,7 @@ public class HomePage extends BasePage {
     private final String URL = "https://pasnormalstudios.com/";
     private final String ALLOW_COOKIES_BUTTON = "//button[@id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']";
     private final String ACCOUNT_LINK = "//span[contains(text(), 'Account')]";
+    private final String SEARCH_BUTTON = "//span[contains(text(), 'Search')]";
 
     public HomePage() {
         super();
@@ -29,5 +30,8 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ACCOUNT_LINK))).click();
     }
 
-
+    public void clickSearchButton() {
+        log.info("Navigating to the search page via the home page.");
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SEARCH_BUTTON))).click();
+    }
 }
