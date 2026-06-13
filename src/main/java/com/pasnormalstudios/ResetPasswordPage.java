@@ -1,13 +1,10 @@
 package com.pasnormalstudios;
 
 import com.pasnormalstudios.data.User;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ResetPasswordPage extends BasePage {
-    private static final Logger log = LogManager.getLogger();
     private final String TITLE = "//p[@class='text-2xl']";
     private final String EMAIL_INPUT = "//input[@type='email']";
     private final String SUBMIT_BUTTON = "//button[@type='submit']";

@@ -2,8 +2,6 @@ package com.pasnormalstudios;
 
 import com.pasnormalstudios.data.User;
 import com.pasnormalstudios.data.Users;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +10,6 @@ import org.junit.jupiter.api.Test;
 public class AccountTest extends BaseTest {
     AccountPage accountPage;
     User user;
-    private static final Logger log = LogManager.getLogger(AccountTest.class);
 
     @BeforeEach
     public void setupAccount() {

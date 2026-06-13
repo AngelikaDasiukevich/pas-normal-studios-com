@@ -1,13 +1,10 @@
 package com.pasnormalstudios;
 
 import com.pasnormalstudios.data.User;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class AccountPage extends BasePage {
-    private static final Logger log = LogManager.getLogger();
     private final String TITLE = "//h2[contains(@class, 'text-black')]";
     private final String EMAIL_INPUT = "//input[@type='email']";
     private final String PASSWORD_INPUT = "//input[@type='password']";
