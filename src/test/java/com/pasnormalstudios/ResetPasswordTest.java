@@ -4,6 +4,7 @@ import com.pasnormalstudios.data.User;
 import com.pasnormalstudios.data.Users;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ResetPasswordTest extends BaseTest {
@@ -13,11 +14,17 @@ public class ResetPasswordTest extends BaseTest {
 
     @BeforeEach
     public void setupAccount() {
-        accountPage = new AccountPage();
         homePage.clickAccountLink();
+        accountPage = new AccountPage();
         accountPage.clickForgetPasswordButton();
         resetPasswordPage = new ResetPasswordPage();
         user = Users.getRandomUser();
+    }
+
+    @Test
+    @DisplayName("Verify Reset Password page title text")
+    public void assertTitleText() {
+        Assertions.assertEquals("Reset password", resetPasswordPage.getTitleText());
     }
 
     @Test

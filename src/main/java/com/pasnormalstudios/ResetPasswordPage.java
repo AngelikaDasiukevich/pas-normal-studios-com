@@ -1,10 +1,13 @@
 package com.pasnormalstudios;
 
 import com.pasnormalstudios.data.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ResetPasswordPage extends BasePage {
+    private static final Logger log = LogManager.getLogger();
     private final String TITLE = "//p[@class='text-2xl']";
     private final String EMAIL_INPUT = "//input[@type='email']";
     private final String SUBMIT_BUTTON = "//button[@type='submit']";
@@ -17,32 +20,41 @@ public class ResetPasswordPage extends BasePage {
     }
 
     public String getTitleText() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TITLE))).getText();
+        String text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(TITLE))).getText();
+        log.info("Fetching Title Text: {}", text);
+        return text;
     }
 
     public void setEmailInput(String email) {
-        //String email = faker.internet().emailAddress();
+        log.info("Typing email: '{}'", email);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EMAIL_INPUT))).sendKeys(email);
     }
 
     public void clickSubmitButton() {
+        log.info("Clicking 'Submit' button");
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SUBMIT_BUTTON))).click();
     }
 
     public void setEmailAndClickSubmitButton(User user) {
+        log.info("Submitting reset password form with email: {}", user.getEmail());
         this.setEmailInput(user.getEmail());
         this.clickSubmitButton();
     }
 
     public String getEmailAlertMessageText() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EMAIL_ALERT_MESSAGE))).getText();
+        String text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(EMAIL_ALERT_MESSAGE))).getText();
+        log.info("Fetched Email alert message: '{}'", text);
+        return text;
     }
 
     public String getResetPasswordInfoMessageText() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RESET_PASSWORD_INFO_MESSAGE))).getText();
+        String text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RESET_PASSWORD_INFO_MESSAGE))).getText();
+        log.info("Fetched Reset Password Info message: '{}'", text);
+        return text;
     }
 
     public void clickBackToLoginButton() {
+        log.info("Clicking 'Back To Login' button");
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(BACK_TO_LOGIN_BUTTON))).click();
     }
 }
