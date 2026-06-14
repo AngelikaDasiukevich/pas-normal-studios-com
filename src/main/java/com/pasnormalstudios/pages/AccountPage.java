@@ -8,14 +8,14 @@ public class AccountPage extends BasePage {
     private final String TITLE = "//h2[contains(@class, 'text-black')]";
     private final String EMAIL_INPUT = "//input[@type='email']";
     private final String PASSWORD_INPUT = "//input[@type='password']";
-    private final String SUBMIT_LOGIN_BUTTON = "//span[contains(text(), 'Login')]";
-    private final String SUBMIT_SIGN_UP_BUTTON = "//span[contains(text(), 'Sign up')]";
-    private final String EMAIL_ALERT_MESSAGE = "//p[contains(text(), 'Email is required')]";
-    private final String PASSWORD_ALERT_MESSAGE = "//p[contains(text(), 'Password is required')]";
-    private final String INVALID_EMAIL_PASSWORD_ALERT_MESSAGE = "//p[contains(text(), 'Invalid email or password')]";
-    private final String FORGET_PASSWORD_BUTTON = "//button[contains(text(), 'Forget password')]";
-    private final String CREATE_ACCOUNT_BUTTON = "//span[contains(text(), 'Create your account')]";
-    private final String LOGIN_BUTTON = "//span[contains(text(), 'Already have an account? Login')]";
+    private final String SUBMIT_LOGIN_BUTTON = "//form[.//input[@autocomplete='current-password']]//button[@type='submit']";
+    private final String SUBMIT_SIGN_UP_BUTTON = "//form[.//input[@autocomplete='new-password']]//button[@type='submit']";
+    private final String EMAIL_ALERT_MESSAGE = "//input[@type='email']/following-sibling::p[@role='alert']";
+    private final String PASSWORD_ALERT_MESSAGE = "//input[@type='password']/following-sibling::p[@role='alert']";
+    private final String INVALID_EMAIL_PASSWORD_ALERT_MESSAGE = "//form[.//input[@autocomplete='current-password']]/p[@role='alert']";
+    private final String FORGET_PASSWORD_BUTTON = "//div[./input[@autocomplete='current-password']]//button[@type='button']";
+    private final String CREATE_ACCOUNT_BUTTON = "//form[.//input[@autocomplete='current-password']]//span[contains(@class, 'underline')]";
+    private final String LOGIN_BUTTON = "//form[.//input[@autocomplete='new-password']]//span[contains(@class, 'underline')]";
 
     public AccountPage() {
         super();

@@ -27,14 +27,8 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ALLOW_COOKIES_BUTTON))).click();
     }
 
-//    public void clickAccountLink() {
-//        log.info("Navigating to the account page via the home page.");
-//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ACCOUNT_LINK))).click();
-//    }
-
     public void clickAccountLink() {
-        log.info("Clicking on Account link via JavaScript to bypass Jenkins overlay");
-
+        log.info("Navigating to the account page via the home page.");
         WebElement element = wait.until(
                 ExpectedConditions.presenceOfElementLocated(By.xpath(ACCOUNT_LINK))
         );
@@ -43,14 +37,8 @@ public class HomePage extends BasePage {
         executor.executeScript("arguments[0].click();", element);
     }
 
-//    public void clickSearchButton() {
-//        log.info("Navigating to the search page via the home page.");
-//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(SEARCH_BUTTON))).click();
-//    }
-
     public void clickSearchButton() {
-        log.info("Clicking on Account link via JavaScript to bypass Jenkins overlay");
-
+        log.info("Navigating to the search page via the home page.");
         WebElement element = wait.until(
                 ExpectedConditions.presenceOfElementLocated(By.xpath(SEARCH_BUTTON))
         );
