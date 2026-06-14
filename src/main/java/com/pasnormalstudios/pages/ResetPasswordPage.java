@@ -3,14 +3,18 @@ package com.pasnormalstudios.pages;
 import com.pasnormalstudios.data.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class ResetPasswordPage extends BasePage {
     private final String TITLE = "//p[@class='text-2xl']";
     private final String EMAIL_INPUT = "//input[@type='email']";
     private final String SUBMIT_BUTTON = "//button[@type='submit']";
-    private final String EMAIL_ALERT_MESSAGE = "//p[contains(text(), 'Email is required')]";
-    private final String RESET_PASSWORD_INFO_MESSAGE = "//p[contains(text(), 'Reset instructions have been sent')]";
-    private final String BACK_TO_LOGIN_BUTTON = "//button[contains(text(), 'Back to login')]";
+    private final String EMAIL_ALERT_MESSAGE = "//input[@type='email']/following-sibling::p[@role='alert']";
+    private final String RESET_PASSWORD_INFO_MESSAGE = "//button[contains(@class, 'underline')]/preceding-sibling::div/p[2]";
+    private final String RESET_PASSWORD_FORM = "//form";
+    private final String BACK_TO_LOGIN_BUTTON = "//form[.//input[@autocomplete='email']]/following-sibling::button[contains(@class, 'underline')]";
 
     public ResetPasswordPage () {
         super();
@@ -45,6 +49,7 @@ public class ResetPasswordPage extends BasePage {
     }
 
     public String getResetPasswordInfoMessageText() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(RESET_PASSWORD_FORM)));
         String text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(RESET_PASSWORD_INFO_MESSAGE))).getText();
         log.info("Fetched Reset Password Info message: '{}'", text);
         return text;
