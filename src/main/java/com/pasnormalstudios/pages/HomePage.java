@@ -13,6 +13,7 @@ public class HomePage extends BasePage {
     private final String ALLOW_COOKIES_BUTTON = "//button[@id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']";
     private final String ACCOUNT_LINK = "//div[contains(@class, 'nav-items')]//a[contains(@href, '/account')]";
     private final String SEARCH_BUTTON = "//div[contains(@class, 'nav-items')]//button[contains(@class, 'search-trigger')]";
+    private final String CART_BUTTON = "//div[contains(@class, 'nav-items')]//button[contains(@class, 'cart-trigger')]";
 
     public HomePage() {
         super();
@@ -41,6 +42,16 @@ public class HomePage extends BasePage {
         log.info("Navigating to the search page via the home page.");
         WebElement element = wait.until(
                 ExpectedConditions.presenceOfElementLocated(By.xpath(SEARCH_BUTTON))
+        );
+
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", element);
+    }
+
+    public void clickCartButton() {
+        log.info("Navigating to the search page via the home page.");
+        WebElement element = wait.until(
+                ExpectedConditions.presenceOfElementLocated(By.xpath(CART_BUTTON))
         );
 
         JavascriptExecutor executor = (JavascriptExecutor) driver;

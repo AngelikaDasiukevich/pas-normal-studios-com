@@ -9,7 +9,9 @@ import java.util.List;
 public class SearchPage extends BasePage {
     private final String TITLE = "//h2[contains(@class, 'text-xl')]";
     private final String SEARCH_INPUT = "//input[@type='search']";
-    private final String PRODUCT_CARDS_SEARCH_RESULT = "//div[@role='option']//div[@class='flex flex-col']";
+    private final String FOUND_PRODUCT_CARD = "//div[@role='option']//div[@class='flex flex-col']";
+    private final String FOUND_PRODUCT_CARD_NAME = "./span[1]";
+    private final String FOUND_PRODUCT_CARD_COLOR = "./span[2]";
 
     public SearchPage(){
         super();
@@ -32,16 +34,16 @@ public class SearchPage extends BasePage {
         return value;
     }
 
-    public void clickProductCartSearchResult(String name, String color) {
+    public void clickProductCardSearchResult(String name, String color) {
         log.info("Searching for product: '{}' with color: '{}'", name, color);
 
         List<WebElement> productResults = wait.until(
-                ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(PRODUCT_CARDS_SEARCH_RESULT))
+                ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(FOUND_PRODUCT_CARD))
         );
 
         WebElement resultToClick = productResults.stream()
                 .filter(result -> isRequiredProduct(result, name, color))
-                .map(result -> result.findElement(By.xpath("./span[1]")))
+                .map(result -> result.findElement(By.xpath(FOUND_PRODUCT_CARD_NAME)))
                 .findFirst()
                 .orElseThrow();
 
@@ -50,8 +52,8 @@ public class SearchPage extends BasePage {
     }
 
     private boolean isRequiredProduct(WebElement result, String name, String color) {
-        String actualName = result.findElement(By.xpath("./span[1]")).getText();
-        String actualColor = result.findElement(By.xpath("./span[2]")).getText();
+        String actualName = result.findElement(By.xpath(FOUND_PRODUCT_CARD_NAME)).getText();
+        String actualColor = result.findElement(By.xpath(FOUND_PRODUCT_CARD_COLOR)).getText();
         return actualName.equals(name) && actualColor.equals(color);
     }
 }

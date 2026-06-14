@@ -50,8 +50,8 @@ public class SearchTest extends BaseTest {
     @Tag("smoke")
     public void clickResult() {
         searchPage.setSearchInput(product.getName());
-        searchPage.clickProductCartSearchResult(product.getName(), product.getColor());
+        searchPage.clickProductCardSearchResult(product.getName(), product.getColor());
         Assertions.assertEquals("Men's Essential Insulated Gilet", productPage.getTitleText());
-        Assertions.assertTrue(productPage.isColorSelected(product.getColor()));
+        Assertions.assertEquals(product.getColor(), productPage.getSelectedColor());
     }
 }
