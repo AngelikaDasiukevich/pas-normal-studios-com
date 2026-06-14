@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ProductPage extends BasePage{
     private String TITLE = "//h1[contains(@class, 'max-w-72')]";
-    private String COLOR_BUTTON = "//div[@class='flex flex-wrap gap-2 p-1']//button[@aria-label]";
+    private String COLOR_BUTTON = "//div[contains(@class, 'flex-wrap')]//button[@aria-label]";
 
     public ProductPage() {
         super();
