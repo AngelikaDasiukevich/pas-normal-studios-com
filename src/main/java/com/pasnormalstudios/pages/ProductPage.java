@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ProductPage extends BasePage{
     private String TITLE = "//h1[contains(@class, 'max-w-72')]";
-    private String ACTIVE_COLOR_BUTTON = "//div[@class='flex flex-wrap gap-2 p-1']//button[@aria-label]";
+    private String COLOR_BUTTON = "//div[@class='flex flex-wrap gap-2 p-1']//button[@aria-label]";
 
     public ProductPage() {
         super();
@@ -24,7 +24,7 @@ public class ProductPage extends BasePage{
         log.info("Verifying if color '{}' is selected ", color);
 
         List<WebElement> buttons = wait.until(
-                ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(ACTIVE_COLOR_BUTTON))
+                ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(COLOR_BUTTON))
         );
 
         boolean result = buttons.stream()

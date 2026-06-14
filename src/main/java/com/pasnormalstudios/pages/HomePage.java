@@ -9,8 +9,8 @@ public class HomePage extends BasePage {
     private static final Logger log = LogManager.getLogger();
     private final String URL = "https://pasnormalstudios.com/";
     private final String ALLOW_COOKIES_BUTTON = "//button[@id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']";
-    private final String ACCOUNT_LINK = "//span[contains(text(), 'Account')]";
-    private final String SEARCH_BUTTON = "//span[contains(text(), 'Search')]";
+    private final String ACCOUNT_LINK = "//div[contains(@class, 'nav-account')]//span[@class='hidden lg:block']";
+    private final String SEARCH_BUTTON = "//button[contains(@class, 'search-trigger')]//span[@class='hidden lg:block']";
 
     public HomePage() {
         super();
