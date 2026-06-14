@@ -24,7 +24,7 @@ public class ProductPage extends BasePage{
         log.info("Verifying if color '{}' is selected ", color);
 
         List<WebElement> buttons = wait.until(
-                ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath(COLOR_BUTTON))
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(COLOR_BUTTON))
         );
 
         boolean result = buttons.stream()
