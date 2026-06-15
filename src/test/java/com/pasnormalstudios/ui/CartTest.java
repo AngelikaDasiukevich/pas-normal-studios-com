@@ -43,7 +43,7 @@ public class CartTest extends BaseTest {
     @Tag("ui")
     public void assertEmptyCartText() {
         homePage.clickCartButton();
-        Assertions.assertEquals("Your cart is empty!", cartPage.getEmptyCartMessage());
+        Assertions.assertEquals("Your cart is empty!Explore New Arrivals", cartPage.getEmptyCartMessage());
     }
 
     @Test

@@ -1,12 +1,14 @@
 package com.pasnormalstudios.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-public class ProductPage extends BasePage{
+public class ProductPage extends BasePage {
     private String TITLE = "//h1[contains(@class, 'max-w-72')]";
     private String COLOR_BUTTON = "//div[contains(@class, 'flex-wrap')]//button[@aria-label]";
     private String SIZE_BUTTON = "//button[contains(@title, 'Size: ')]";
@@ -42,15 +44,21 @@ public class ProductPage extends BasePage{
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(SIZE_BUTTON))
         );
 
-        sizeButtons.stream()
+        WebElement targetButton = sizeButtons.stream()
                 .filter(button -> {
                     String title = button.getAttribute("title");
                     return title.contains("Size: " + size) && !title.contains("Out of stock");
                 })
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Size '" + size + "' is not available (not found or Out of Stock)"))
-                .click();
+                .orElseThrow(() -> new RuntimeException("Size '" + size + "' is not available (not found or Out of Stock)"));
 
+        wait.until(ExpectedConditions.elementToBeClickable(targetButton));
+        try {
+            targetButton.click();
+        } catch (ElementClickInterceptedException e) {
+            log.warn("Standard click intercepted, retrying via JavaScript execution.");
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", targetButton);
+        }
         log.info("Size '{}' successfully selected.", size);
     }
 
