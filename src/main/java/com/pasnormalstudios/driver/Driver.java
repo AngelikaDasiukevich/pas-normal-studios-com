@@ -1,7 +1,8 @@
-package com.pasnormalstudios;
+package com.pasnormalstudios.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class Driver {
     private static WebDriver driver;
@@ -9,9 +10,12 @@ public class Driver {
     private Driver() {};
 
     public static WebDriver getDriver() {
-        if (driver == null) {
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
+        if (driver == null)
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--window-size=1920,1080"); // Жесткий размер экрана
+            options.addArguments("--headless=new");
+            driver = new ChromeDriver(options);
         }
         return driver;
     }

@@ -1,7 +1,7 @@
 package com.pasnormalstudios.api;
 
 import com.pasnormalstudios.data.User;
-import com.pasnormalstudios.data.UserFactory;
+import com.pasnormalstudios.data.Users;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ public class AccountTest {
 
     @BeforeEach
     public void setupApi() {
-        user = UserFactory.createValidUser();
+        user = Users.getRandomUser();
         apiService = new ApiService();
     }
 
