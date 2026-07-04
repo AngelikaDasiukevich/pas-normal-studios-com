@@ -1,5 +1,6 @@
 package com.pasnormalstudios.api;
 
+import com.pasnormalstudios.pages.BasePage;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -16,8 +17,8 @@ import static io.restassured.RestAssured.given;
 public class ApiService {
     Response response;
     private static final Logger log = LogManager.getLogger();
-    private final String API_HOME = "https://pasnormalstudios.com/api/";
-    private final String LOGIN_URL = API_HOME + "auth/login";
+    private final String API_HOME = BasePage.BASE_URL + "/api/";
+    private final String LOGIN_API_URL = API_HOME + "auth/login";
 
 
     public void doPostRequest(String body) {
@@ -33,10 +34,10 @@ public class ApiService {
                 "Gecko) Chrome/147.0.0.0 Safari/537.36")
                 .filter(new RequestLoggingFilter(LogDetail.ALL, requestPrintStream))
                 .filter(new ResponseLoggingFilter(LogDetail.ALL, responsePrintStream))
-                .body(body).when().post(LOGIN_URL);
+                .body(body).when().post(LOGIN_API_URL);
 
-        log.info("API Request Details:\n" + requestWriter.toString());
-        log.info("API Response Details:\n" + responseWriter.toString());
+        log.info("API Request Details:\n{}", requestWriter);
+        log.info("API Response Details:\n{}", responseWriter);
     }
 
     public int getStatusCode() {

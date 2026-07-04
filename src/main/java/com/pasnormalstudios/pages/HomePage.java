@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
     private static final Logger log = LogManager.getLogger();
-    private final String URL = "https://pasnormalstudios.com/";
+    private final String PAGE_URL = BASE_URL + "/";
     private final String ALLOW_COOKIES_BUTTON = "//button[@id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']";
     private final String ACCOUNT_LINK = "//div[contains(@class, 'nav-items')]//a[contains(@href, '/account')]";
     private final String SEARCH_BUTTON = "//div[contains(@class, 'nav-items')]//button[contains(@class, 'search-trigger')]";
@@ -20,7 +20,7 @@ public class HomePage extends BasePage {
     }
 
     public void open() {
-        driver.get(URL);
+        driver.get(PAGE_URL);
     }
 
     public void clickAllowCookiesButton() {

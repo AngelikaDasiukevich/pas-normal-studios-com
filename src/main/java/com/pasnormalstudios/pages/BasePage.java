@@ -12,6 +12,7 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected final Logger log = LogManager.getLogger(this.getClass());
+    public static final String BASE_URL = "https://pasnormalstudios.com";
 
     public BasePage() {
         this.driver = Driver.getDriver();
