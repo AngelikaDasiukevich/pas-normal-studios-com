@@ -16,7 +16,6 @@ public class Driver {
             options.addArguments("--window-size=1920,1080"); // Жесткий размер экрана
             options.addArguments("--headless=new");
             driver = new ChromeDriver(options);
-            //driver.manage().window().maximize();
         }
         return driver;
     }

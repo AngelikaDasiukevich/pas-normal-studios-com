@@ -7,13 +7,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
 public class CartPage extends BasePage {
-    private static String TITLE = "//h2[contains(@class, 'text-xl')]";
-    private static String EMPTY_CART_MESSAGE = "//div[contains(@class, 'flex-col')]//p[contains(@class, 'text-center')]";
-    private static String CART_ITEM = "//div[contains(@class, 'transition')]//li";
-    private final By CART_ITEM_NAME = By.xpath(".//span[contains(@class, 'pr-8')]");
-    private final By CART_ITEM_COLOR = By.xpath(".//div[contains(@class, 'gap-2')]/span[1]");
-    private final By CART_ITEM_SIZE = By.xpath(".//div[contains(@class, 'gap-2')]/span[2]");
-    private final By CART_ITEM_PRICE = By.xpath(".//div[contains(@class, 'pt-[10px]')]/span");
+    private final String TITLE = "//h2[contains(@class, 'text-xl')]";
+    private final String EMPTY_CART_MESSAGE = "//div[contains(@class, 'flex-col')]//p[contains(@class, 'text-center')]";
+    private final String CART_ITEM = "//div[contains(@class, 'transition')]//li";
+    private final String CART_ITEM_NAME = ".//span[contains(@class, 'pr-8')]";
+    private final String CART_ITEM_COLOR = ".//div[contains(@class, 'gap-2')]/span[1]";
+    private final String CART_ITEM_SIZE = ".//div[contains(@class, 'gap-2')]/span[2]";
+    private final String CART_ITEM_PRICE = ".//div[contains(@class, 'pt-[10px]')]/span";
 
     public CartPage() {
         super();
@@ -40,11 +40,11 @@ public class CartPage extends BasePage {
         );
 
         return cartItems.stream().anyMatch(item -> {
-            String actualName = item.findElement(CART_ITEM_NAME).getText();
-            String actualColor = item.findElement(CART_ITEM_COLOR).getText();
-            String actualSize = item.findElement(CART_ITEM_SIZE).getText();
+            String actualName = item.findElement(By.xpath(CART_ITEM_NAME)).getText();
+            String actualColor = item.findElement(By.xpath(CART_ITEM_COLOR)).getText();
+            String actualSize = item.findElement(By.xpath(CART_ITEM_SIZE)).getText();
 
-            String rawPrice = item.findElement(CART_ITEM_PRICE).getText();
+            String rawPrice = item.findElement(By.xpath(CART_ITEM_PRICE)).getText();
             double actualPrice = Double.parseDouble(rawPrice.replaceAll("[^0-9.]", ""));
 
             log.info("Product is in cart");
