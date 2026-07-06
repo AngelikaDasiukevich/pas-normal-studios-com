@@ -13,14 +13,12 @@ import org.junit.jupiter.api.*;
 @Tag("regression")
 public class SearchTest extends BaseTest {
     SearchPage searchPage;
-    ProductPage productPage;
     Product product;
 
     @BeforeEach
     public void setupSearch() {
-        searchPage = new SearchPage();
         homePage.clickSearchButton();
-        productPage = new ProductPage();
+        searchPage = new SearchPage();
         product = Products.getBaseProduct();
     }
 
@@ -51,6 +49,7 @@ public class SearchTest extends BaseTest {
     public void clickResult() {
         searchPage.setSearchInput(product.getName());
         searchPage.clickProductCardSearchResult(product.getName(), product.getColor());
+        ProductPage productPage = new ProductPage();
         Assertions.assertEquals("Men's Essential Insulated Gilet", productPage.getTitleText());
         Assertions.assertEquals(product.getColor(), productPage.getSelectedColor());
     }

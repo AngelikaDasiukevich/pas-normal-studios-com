@@ -14,15 +14,11 @@ import org.junit.jupiter.api.*;
 @Tag("regression")
 public class CartTest extends BaseTest {
     CartPage cartPage;
-    ProductPage productPage;
-    SearchPage searchPage;
     Product product;
 
     @BeforeEach
     public void setupSearch() {
         cartPage = new CartPage();
-        productPage = new ProductPage();
-        searchPage = new SearchPage();
         product = Products.getBaseProduct();
     }
 
@@ -53,8 +49,12 @@ public class CartTest extends BaseTest {
     @Tag("cart")
     public void assertAddingProductToCart() {
         homePage.clickSearchButton();
+
+        SearchPage searchPage = new SearchPage();
         searchPage.setSearchInput(product.getName());
         searchPage.clickProductCardSearchResult(product.getName(), product.getColor());
+
+        ProductPage productPage = new ProductPage();
         productPage.clickSizeButton(product.getSize());
         productPage.clickAddToCartButton();
         Assertions.assertEquals("Cart (1)", cartPage.getTitleText());
@@ -67,8 +67,12 @@ public class CartTest extends BaseTest {
     @Tag("cart")
     public void assertProductDetailsInCart() {
         homePage.clickSearchButton();
+
+        SearchPage searchPage = new SearchPage();
         searchPage.setSearchInput(product.getName());
         searchPage.clickProductCardSearchResult(product.getName(), product.getColor());
+
+        ProductPage productPage = new ProductPage();
         productPage.clickSizeButton(product.getSize());
         productPage.clickAddToCartButton();
         Assertions.assertTrue(cartPage.isProductInCart(product.getName(), product.getColor(), product.getSize(), product.getPrice()));

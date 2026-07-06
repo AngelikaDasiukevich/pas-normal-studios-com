@@ -57,7 +57,7 @@ public class ProductPage extends BasePage {
             targetButton.click();
         } catch (ElementClickInterceptedException e) {
             log.warn("Standard click intercepted, retrying via JavaScript execution.");
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", targetButton);
+            clickElementWithJSExecutor(targetButton);
         }
         log.info("Size '{}' successfully selected.", size);
     }

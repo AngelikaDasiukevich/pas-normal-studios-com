@@ -30,31 +30,16 @@ public class HomePage extends BasePage {
 
     public void clickAccountLink() {
         log.info("Navigating to the account page via the home page.");
-        WebElement element = wait.until(
-                ExpectedConditions.presenceOfElementLocated(By.xpath(ACCOUNT_LINK))
-        );
-
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", element);
+        waitAndClickElementWithJSExecutor(ACCOUNT_LINK);
     }
 
     public void clickSearchButton() {
         log.info("Navigating to the search page via the home page.");
-        WebElement element = wait.until(
-                ExpectedConditions.presenceOfElementLocated(By.xpath(SEARCH_BUTTON))
-        );
-
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", element);
+        waitAndClickElementWithJSExecutor(SEARCH_BUTTON);
     }
 
     public void clickCartButton() {
         log.info("Navigating to the search page via the home page.");
-        WebElement element = wait.until(
-                ExpectedConditions.presenceOfElementLocated(By.xpath(CART_BUTTON))
-        );
-
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", element);
+        waitAndClickElementWithJSExecutor(CART_BUTTON);
     }
 }
